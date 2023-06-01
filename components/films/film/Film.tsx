@@ -11,7 +11,7 @@ export const Film = ({ film }: PropsType) => {
   const { name, image, rating, genres, status, summary, schedule } = film.show;
 
   return (
-    <div className={styles.film}>
+    <div className={styles.film} onBlur={() => setIsShowDetails(false)}>
       <img src={image ? image.medium : "a"} alt={name} />
       <div>Name: {name}</div>
       <div>Ratting: {rating.average ? rating.average : "unknown"}</div>
@@ -23,10 +23,13 @@ export const Film = ({ film }: PropsType) => {
           <div>
             Schedule:{" "}
             {schedule.time || schedule.days.length
-              ? schedule.time + " " + schedule.days.join()
+              ? schedule.time + " " + schedule.days.join(", ")
               : "unknown"}
           </div>
-          <div>Summary: {summary ? summary : "unknown"}</div>
+          <div>
+            Summary:{" "}
+            {summary ? summary.replace(/(\<(\/?[^>]+)>)/g, "") : "unknown"}
+          </div>
         </div>
       ) : (
         <></>
