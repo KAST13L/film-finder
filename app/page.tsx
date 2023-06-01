@@ -7,14 +7,9 @@ export default function Home() {
   const [films, setFilms] = useState([]);
 
   return (
-    <>
-      Film finder!
-      <div>
-        <FilmSearch onSearch={setFilms} />
-      </div>
-      <div>
-        <Films films={films} />
-      </div>
-    </>
+    <div>
+      <FilmSearch onSearch={setFilms} />
+      <Films films={films} />
+    </div>
   );
 }
