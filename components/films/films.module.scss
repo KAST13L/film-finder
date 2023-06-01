@@ -1,5 +1,24 @@
-.films{
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
+.films {
+  display: grid;
+  height: auto;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+@media (max-width: 992px) {
+  .films {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 760px) {
+  .films {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .films {
+    grid-template-columns: 1fr;
+  }
 }
