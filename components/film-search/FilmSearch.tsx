@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEventHandler, useState } from "react";
-import { getFilmsBySearch } from "@/services/api";
+import { getFilmsBySearch } from "@/redux/services/api";
 
 type Props = {
   onSearch: any;
