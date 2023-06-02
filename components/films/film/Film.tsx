@@ -44,7 +44,7 @@ export const Film = ({ film }: PropsType) => {
   );
 
   return (
-    <div className={styles.film} onBlur={() => setIsShowDetails(false)}>
+    <div className={styles.film}>
       {imageContent}
 
       <div className={styles.title}>{name}</div>

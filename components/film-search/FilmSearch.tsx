@@ -4,10 +4,7 @@ import { FormEventHandler, useState } from "react";
 import { filmThunks } from "@/redux/slicies/filmSlice";
 import { useActions } from "@/redux/hooks/useActions";
 
-type Props = {
-  setIsCallApi: any;
-};
-export const FilmSearch = ({ setIsCallApi }: Props) => {
+export const FilmSearch = () => {
   const [search, setSearch] = useState<string>("");
 
   const { loadFilmsBySearch } = useActions(filmThunks);
@@ -15,7 +12,6 @@ export const FilmSearch = ({ setIsCallApi }: Props) => {
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     await loadFilmsBySearch(search);
-    setIsCallApi(true);
   };
 
   return (
