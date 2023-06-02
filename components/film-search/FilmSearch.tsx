@@ -1,19 +1,20 @@
 "use client";
 
 import { FormEventHandler, useState } from "react";
-import { getFilmsBySearch } from "@/redux/services/api";
+import { filmThunks } from "@/redux/slicies/filmSlice";
+import { useActions } from "@/redux/hooks/useActions";
 
 type Props = {
-  onSearch: any;
   setIsCallApi: any;
 };
-export const FilmSearch = ({ onSearch, setIsCallApi }: Props) => {
+export const FilmSearch = ({ setIsCallApi }: Props) => {
   const [search, setSearch] = useState<string>("");
+
+  const { loadFilmsBySearch } = useActions(filmThunks);
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
-    const posts = await getFilmsBySearch(search);
-    onSearch(posts);
+    await loadFilmsBySearch(search);
     setIsCallApi(true);
   };
 

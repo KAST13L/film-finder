@@ -1,6 +1,11 @@
-export async function getFilmsBySearch(
-  search: string
-): Promise<{ id: string; name: string }> {
-  const res = await fetch(`https://api.tvmaze.com/search/shows?q=${search}`);
-  return res.json();
-}
+import axios from "axios";
+
+export const instance = axios.create({
+  baseURL: "https://api.tvmaze.com/",
+});
+
+export const filmApi = {
+  getFilmsBySearch(text: string) {
+    return instance.get(`search/shows?q=${text}`).then((res) => res.data);
+  },
+};
