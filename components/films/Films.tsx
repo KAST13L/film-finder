@@ -1,4 +1,4 @@
-import { Film } from "@/components/films/film/Film";
+import MovieCard from "@/components/films/movie-card/MovieCard";
 import styles from "./films.module.scss";
 import { useAppSelector } from "@/redux/hooks/hooks";
 
@@ -23,6 +23,7 @@ export type FilmType = {
       original: string;
     };
     summary: string;
+    premiered: string;
   };
 };
 
@@ -32,7 +33,7 @@ export const Films = () => {
   return (
     <div className={styles.films}>
       {films.map((f) => (
-        <Film key={f.show.id} film={f} />
+        <MovieCard key={f.show.id} film={f} />
       ))}
     </div>
   );

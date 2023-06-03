@@ -3,7 +3,7 @@ import { FilmType } from "@/components/films/Films";
 import { filmApi } from "@/redux/services/api";
 
 export const loadFilmsBySearch = createAsyncThunk(
-  "film/loadFilmBySearch",
+  "movie-card/loadFilmBySearch",
   async (text: string) => {
     return await filmApi.getFilmsBySearch(text);
   }
