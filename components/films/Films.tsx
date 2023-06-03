@@ -1,5 +1,6 @@
 import { Film } from "@/components/films/film/Film";
 import styles from "./films.module.scss";
+import { useAppSelector } from "@/redux/hooks/hooks";
 
 export type FilmType = {
   score: number;
@@ -25,10 +26,9 @@ export type FilmType = {
   };
 };
 
-type PropsType = {
-  films: FilmType[];
-};
-export const Films = ({ films }: PropsType) => {
+export const Films = () => {
+  const films = useAppSelector((state) => state.film.films);
+
   return (
     <div className={styles.films}>
       {films.map((f) => (
