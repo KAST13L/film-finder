@@ -1,4 +1,16 @@
+"use client";
+import { AppBar } from "@mui/material";
 import styles from "./header.module.scss";
+
 export const Header = () => {
-  return <div className={styles.header}>Film finder</div>;
+  return (
+    <AppBar
+      className={styles.header}
+      position="static"
+      color="primary"
+      enableColorOnDark
+    >
+      Film finder
+    </AppBar>
+  );
 };
