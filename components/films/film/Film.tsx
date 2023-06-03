@@ -3,6 +3,9 @@ import { FilmType } from "@/components/films/Films";
 import styles from "./film.module.scss";
 import React, { useState } from "react";
 import { Rating } from "@mui/material";
+import { useActions } from "@/redux/hooks/useActions";
+import { filmActions } from "@/redux/slicies/filmSlice";
+import Link from "next/link";
 
 type PropsType = {
   film: FilmType;
@@ -11,6 +14,8 @@ export const Film = ({ film }: PropsType) => {
   const [isShowDetails, setIsShowDetails] = useState(false);
   const { name, image, rating, genres, status, summary, schedule, id } =
     film.show;
+
+  const { getFilmById } = useActions(filmActions);
 
   const imageContent = !isShowDetails && (
     <img
@@ -62,6 +67,13 @@ export const Film = ({ film }: PropsType) => {
 
       <button onClick={() => setIsShowDetails(!isShowDetails)}>
         {isShowDetails ? "hide details" : "show details"}
+      </button>
+      <button
+        onClick={() => {
+          getFilmById({ filmId: id });
+        }}
+      >
+        <Link href={"film"}>selectedMovie</Link>
       </button>
     </div>
   );
