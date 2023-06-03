@@ -4,10 +4,14 @@ import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { FilmType } from "@/components/films/Films";
-import { Rating } from "@mui/material";
+import { Button, Rating } from "@mui/material";
 import { useActions } from "@/redux/hooks/useActions";
 import { filmActions } from "@/redux/slicies/filmSlice";
 import Link from "next/link";
+import styles from "./MovieCard.module.scss";
+import OpenWithIcon from "@mui/icons-material/OpenWith";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import Tooltip from "@mui/material/Tooltip";
 
 type PropsType = {
   film: FilmType;
@@ -16,19 +20,8 @@ export default function MovieCard({ film }: PropsType) {
   const { name, image, rating, id, premiered } = film.show;
   const { getFilmById } = useActions(filmActions);
   return (
-    <Card
-      elevation={6}
-      sx={{ display: "flex", justifyContent: "space-between" }}
-    >
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          alignItems: "center",
-          width: "100%",
-        }}
-      >
+    <Card elevation={6} className={styles.card}>
+      <Box className={styles.content}>
         <Rating
           name="read-only"
           precision={0.1}
@@ -38,26 +31,34 @@ export default function MovieCard({ film }: PropsType) {
         />
         <Typography component="div" variant="h5">
           {name}
+          <div className={styles.premiered}>{premiered}</div>
         </Typography>
-        <Typography component="div">
-          <div>{premiered}</div>
-          <span
-            onClick={() => {
-              getFilmById({ filmId: id });
-            }}
-          >
-            <Link href={"film"}>❤</Link>
-          </span>
-          <span>↔</span>
-        </Typography>
+        <Box className={styles.buttonList}>
+          <Tooltip title="Add to favorite">
+            <Button>
+              <FavoriteBorderIcon fontSize={"small"} />
+            </Button>
+          </Tooltip>
+          <Link href={"film"}>
+            <Tooltip title="Show more details">
+              <Button
+                onClick={() => {
+                  getFilmById({ filmId: id });
+                }}
+              >
+                <OpenWithIcon fontSize={"small"} />
+              </Button>
+            </Tooltip>
+          </Link>
+        </Box>
       </Box>
       <CardMedia
         component="img"
-        sx={{ width: 150 }}
+        className={styles.image}
         image={
           image
             ? image.original
-            : "https://images.moviesanywhere.com/3b9542164920b044dff30500da3266f7/5d5cca7a-9603-4300-aac1-96577d784dd9.jpg"
+            : "https://filmyspace.in/wp-content/uploads/2021/08/Cinema-or-nothingBlack-scaled.jpg"
         }
       />
     </Card>
