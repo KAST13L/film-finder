@@ -1,12 +1,12 @@
 "use client";
 import { MovieSearch } from "@/components/movie-search/MovieSearch";
-import { Films } from "@/components/films/Films";
+import { Movies } from "@/components/films/Movies";
 
 export default function Home() {
   return (
     <>
       <MovieSearch />
-      <Films />
+      <Movies />
     </>
   );
 }

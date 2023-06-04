@@ -1,6 +1,6 @@
 "use client";
 import { AppBar } from "@mui/material";
-import styles from "./header.module.scss";
+import styles from "./Header.module.scss";
 import Link from "next/link";
 import { useAppSelector } from "@/redux/hooks/hooks";
 import LinearProgress from "@mui/material/LinearProgress";

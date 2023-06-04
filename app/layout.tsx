@@ -4,7 +4,7 @@ import { Providers } from "@/redux/provider";
 import { ErrorSnackbar } from "@/components/error-snackbar/ErrorSnackbar";
 
 export const metadata = {
-  title: "Film finder",
+  title: "Movie finder",
 };
 
 export default function RootLayout({

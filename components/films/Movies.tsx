@@ -1,8 +1,8 @@
 import MovieCard from "@/components/films/movie-card/MovieCard";
-import styles from "./films.module.scss";
+import styles from "./Movies.module.scss";
 import { useAppSelector } from "@/redux/hooks/hooks";
 
-export type FilmType = {
+export type MovieType = {
   score: number;
   show: {
     id: number;
@@ -27,15 +27,15 @@ export type FilmType = {
   };
 };
 
-export const Films = () => {
-  const films = useAppSelector((state) => state.film.films);
-  const isSearched = useAppSelector((state) => state.film.isSearched);
+export const Movies = () => {
+  const films = useAppSelector((state) => state.movie.movies);
+  const isSearched = useAppSelector((state) => state.movie.isSearched);
 
   return (
     <>
       <div className={styles.films}>
         {films.map((f) => (
-          <MovieCard key={f.show.id} film={f} />
+          <MovieCard key={f.show.id} movie={f} />
         ))}
       </div>
       <div className={styles.message}>

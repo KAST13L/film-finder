@@ -2,10 +2,10 @@
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
-import { FilmType } from "@/components/films/Films";
+import { MovieType } from "@/components/films/Movies";
 import { Button, Rating } from "@mui/material";
 import { useActions } from "@/redux/hooks/useActions";
-import { filmActions } from "@/redux/slicies/filmSlice";
+import { movieActions } from "@/redux/slicies/movieSlice";
 import Link from "next/link";
 import styles from "./MovieCard.module.scss";
 import OpenWithIcon from "@mui/icons-material/OpenWith";
@@ -13,11 +13,11 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import Tooltip from "@mui/material/Tooltip";
 
 type PropsType = {
-  film: FilmType;
+  movie: MovieType;
 };
-export default function MovieCard({ film }: PropsType) {
-  const { name, image, rating, id, premiered } = film.show;
-  const { getFilmById } = useActions(filmActions);
+export default function MovieCard({ movie }: PropsType) {
+  const { name, image, rating, id, premiered } = movie.show;
+  const { getMovieById } = useActions(movieActions);
   return (
     <Card elevation={6} className={styles.card}>
       <Box className={styles.content}>
@@ -38,11 +38,11 @@ export default function MovieCard({ film }: PropsType) {
               <FavoriteBorderIcon fontSize={"small"} />
             </Button>
           </Tooltip>
-          <Link href={"film"}>
+          <Link href={"movie"}>
             <Tooltip title="Show more details">
               <Button
                 onClick={() => {
-                  getFilmById({ filmId: id });
+                  getMovieById({ movieId: id });
                 }}
               >
                 <OpenWithIcon fontSize={"small"} />

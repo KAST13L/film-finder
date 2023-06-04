@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { loadFilmsBySearch } from "@/redux/slicies/filmSlice";
+import { getMoviesBySearch } from "@/redux/slicies/movieSlice";
 
 // types
 export type RequestStatusType = "idle" | "loading" | "succeeded" | "failed";
@@ -31,10 +31,10 @@ export const appSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(loadFilmsBySearch.fulfilled, (state) => {
+      .addCase(getMoviesBySearch.fulfilled, (state) => {
         state.success = "Search done!";
       })
-      .addCase(loadFilmsBySearch.rejected, (state) => {
+      .addCase(getMoviesBySearch.rejected, (state) => {
         state.error = "Nothing was found for this search.";
         state.status = "failed";
       })

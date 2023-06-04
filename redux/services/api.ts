@@ -1,14 +1,16 @@
 import axios from "axios";
-import { FilmType } from "@/components/films/Films";
+import { MovieType } from "@/components/films/Movies";
 
 export const instance = axios.create({
   baseURL: "https://api.tvmaze.com/",
 });
 
-export const filmApi = {
-  getFilmsBySearch(text: string) {
+export const movieApi = {
+  getMoviesBySearch(search: string) {
     return instance
-      .get<{ text: string }, { data: FilmType[] }>(`search/shows?q=${text}`)
+      .get<{ search: string }, { data: MovieType[] }>(
+        `search/shows?q=${search}`
+      )
       .then((res) => res.data);
   },
 };
