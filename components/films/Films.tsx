@@ -35,6 +35,7 @@ export const Films = () => {
       {films.map((f) => (
         <MovieCard key={f.show.id} film={f} />
       ))}
+      {!films.length && "Type the show's name"}
     </div>
   );
 };

@@ -4,8 +4,13 @@ import { filmApi } from "@/redux/services/api";
 
 export const loadFilmsBySearch = createAsyncThunk(
   "movie-card/loadFilmBySearch",
-  async (text: string) => {
-    return await filmApi.getFilmsBySearch(text);
+  async (text: string, { rejectWithValue }) => {
+    const res = await filmApi.getFilmsBySearch(text);
+    if (res.length) {
+      return res;
+    } else {
+      return rejectWithValue({});
+    }
   }
 );
 
@@ -26,9 +31,13 @@ export const filmSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(loadFilmsBySearch.fulfilled, (state, action) => {
-      state.films = action.payload;
-    });
+    builder
+      .addCase(loadFilmsBySearch.fulfilled, (state, action) => {
+        state.films = action.payload;
+      })
+      .addCase(loadFilmsBySearch.rejected, (state, action) => {
+        state.films = [];
+      });
   },
 });
 
