@@ -1,6 +1,12 @@
 .form{
   display: flex;
   justify-content: center;
+  padding: 10px;
+  border: 1px solid #919191;
+  border-radius: 30px;
+  align-items: center;
+  margin: 5px auto;
+  width: 360px;
 
   .input{
     padding-right: 10px;

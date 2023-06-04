@@ -1,7 +1,6 @@
 "use client";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
-import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { FilmType } from "@/components/films/Films";
 import { Button, Rating } from "@mui/material";
@@ -52,14 +51,15 @@ export default function MovieCard({ film }: PropsType) {
           </Link>
         </Box>
       </Box>
-      <CardMedia
-        component="img"
+
+      <img
         className={styles.image}
-        image={
+        src={
           image
             ? image.original
             : "https://filmyspace.in/wp-content/uploads/2021/08/Cinema-or-nothingBlack-scaled.jpg"
         }
+        alt={name}
       />
     </Card>
   );

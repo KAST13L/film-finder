@@ -1,6 +1,7 @@
 "use client";
 import { AppBar } from "@mui/material";
 import styles from "./header.module.scss";
+import Link from "next/link";
 
 export const Header = () => {
   return (
@@ -10,7 +11,7 @@ export const Header = () => {
       color="primary"
       enableColorOnDark
     >
-      Film finder
+      <Link href={"/"}>Film finder</Link>
     </AppBar>
   );
 };

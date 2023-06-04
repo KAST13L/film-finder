@@ -10,9 +10,9 @@ export const MovieSearch = () => {
 
   const { loadFilmsBySearch } = useActions(filmThunks);
 
-  const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
+  const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    await loadFilmsBySearch(search);
+    loadFilmsBySearch(search);
   };
 
   return (
@@ -25,7 +25,9 @@ export const MovieSearch = () => {
         className={styles.input}
         onChange={(e) => setSearch(e.target.value)}
       />
-      <Button variant={"contained"}>search</Button>
+      <Button onClick={() => loadFilmsBySearch(search)} variant={"contained"}>
+        search
+      </Button>
     </form>
   );
 };
