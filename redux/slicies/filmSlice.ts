@@ -17,6 +17,7 @@ export const loadFilmsBySearch = createAsyncThunk(
 const initialState = {
   films: [] as FilmType[],
   selectedFilm: {} as FilmType,
+  isSearched: false,
 };
 
 export const filmSlice = createSlice({
@@ -34,6 +35,7 @@ export const filmSlice = createSlice({
     builder
       .addCase(loadFilmsBySearch.fulfilled, (state, action) => {
         state.films = action.payload;
+        state.isSearched = true;
       })
       .addCase(loadFilmsBySearch.rejected, (state, action) => {
         state.films = [];
