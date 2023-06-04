@@ -36,6 +36,7 @@ export const appSlice = createSlice({
       })
       .addCase(loadFilmsBySearch.rejected, (state) => {
         state.error = "Nothing was found for this search.";
+        state.status = "failed";
       })
       .addMatcher(
         (action) => action.type.endsWith("/pending"),
@@ -47,6 +48,12 @@ export const appSlice = createSlice({
         (action) => action.type.endsWith("/fulfilled"),
         (state) => {
           state.status = "succeeded";
+        }
+      )
+      .addMatcher(
+        (action) => action.type.endsWith("/rejected"),
+        (state) => {
+          state.status = "failed";
         }
       );
   },
