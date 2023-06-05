@@ -1,6 +1,6 @@
 "use client";
 import { useAppSelector } from "@/common/hooks/hooks";
-import { SelectedMovieCard } from "@/components/selected-movie/SelectedMovieCard";
+import { SelectedMovieCard } from "@/feauters/selected-movie/SelectedMovieCard";
 import { redirect } from "next/navigation";
 
 export default function SelectedMovie() {

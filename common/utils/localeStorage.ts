@@ -1,6 +1,6 @@
-import { MovieType } from "@/components/films/Movies";
+import { MovieType } from "@/feauters/movies/Movies";
 
-const FAVORITE = "favorite";
+const FAVORITE = "favoriteMovies";
 export const saveFavoriteMovies = (data: MovieType[]) => {
   if (!window || !window.localStorage) {
     return;
@@ -20,5 +20,23 @@ export const getFavoriteMovies = () => {
   } catch (e) {
     console.error(e);
     return null;
+  }
+};
+
+export const deleteJokeFromLocaleStorage = (movieId: number) => {
+  let prevState: MovieType[] = getFavoriteMovies();
+  if (prevState.some((m) => m.show.id === movieId)) {
+    prevState = prevState.filter((m) => m.show.id !== movieId);
+    saveFavoriteMovies(prevState);
+  }
+};
+
+export const toggleIsFavoriteMovieLocalStorage = (movie: MovieType) => {
+  let prevState: MovieType[] = getFavoriteMovies();
+  if (movie.isFavorite) {
+    deleteJokeFromLocaleStorage(movie.show.id);
+  } else {
+    prevState = prevState.concat({ ...movie, isFavorite: true });
+    saveFavoriteMovies(prevState);
   }
 };

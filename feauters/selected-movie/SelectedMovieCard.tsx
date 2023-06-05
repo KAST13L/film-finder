@@ -1,12 +1,15 @@
 "use client";
 import styles from "./SelectedMovie.module.scss";
 import Box from "@mui/material/Box";
-import { Button, Rating } from "@mui/material";
+import { Rating } from "@mui/material";
 import Typography from "@mui/material/Typography";
-import Tooltip from "@mui/material/Tooltip";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import Card from "@mui/material/Card";
-import { MovieType } from "@/components/films/Movies";
+import { MovieType } from "@/feauters/movies/Movies";
+import { ToggleIsFavoriteHeart } from "@/components/toggle-is-favorite-heart/ToggleIsFavoriteHeart";
+import {
+  ALTERNATIVE_IMAGE,
+  REMOVE_TAGS_REG,
+} from "@/common/variables/variables";
 
 type PropsType = {
   selectedMovie: MovieType;
@@ -46,30 +49,43 @@ export const SelectedMovieCard = ({ selectedMovie }: PropsType) => {
     },
     {
       title: "Summary:",
-      value: summary ? summary.replace(/(\<(\/?[^>]+)>)/g, "") : "",
+      value: summary ? summary.replace(REMOVE_TAGS_REG, "") : "",
     },
   ];
 
+  const detailsList = details.map((d) => (
+    <div key={d.title}>
+      <div className={styles.title}>{d.title}</div>
+      <div className={styles.value}>
+        {d.value.length > 2 ? (
+          d.value.slice(0, 4) === "http" ? (
+            <a href={d.value}>Link - (tap on this link should open the link)</a>
+          ) : (
+            d.value
+          )
+        ) : (
+          "Oops... information is unknown"
+        )}
+      </div>
+    </div>
+  ));
+
   return (
     <>
-      <Card elevation={6} className={styles.card}>
+      <Card
+        elevation={6}
+        className={styles.card}
+        style={selectedMovie.isFavorite ? { background: "pink" } : {}}
+      >
         <Box className={styles.header}>
           <img
             className={styles.image}
-            src={
-              image
-                ? image.original
-                : "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/unknown-design-template-3f8378c38ba6a4c2839db800e4eb1713_screen.jpg?ts=1652679575"
-            }
+            src={image ? image.original : ALTERNATIVE_IMAGE}
             alt={name}
           />
           <Box className={styles.headerContent}>
             <Box className={styles.favorite}>
-              <Tooltip title="Add to favorite">
-                <Button>
-                  <FavoriteBorderIcon fontSize={"small"} />
-                </Button>
-              </Tooltip>
+              <ToggleIsFavoriteHeart movie={selectedMovie} />
             </Box>
             <div></div>
             <Typography component="div" variant="h5">
@@ -86,26 +102,7 @@ export const SelectedMovieCard = ({ selectedMovie }: PropsType) => {
             <div></div>
           </Box>
         </Box>
-        <Box className={styles.details}>
-          {details.map((d) => (
-            <div key={d.title}>
-              <div className={styles.title}>{d.title}</div>
-              <div className={styles.value}>
-                {d.value.length > 2 ? (
-                  d.value.slice(0, 4) === "http" ? (
-                    <a href={d.value}>
-                      Link - (tap on this link should open the link)
-                    </a>
-                  ) : (
-                    d.value
-                  )
-                ) : (
-                  "Oops... information is unknown"
-                )}
-              </div>
-            </div>
-          ))}
-        </Box>
+        <Box className={styles.details}>{detailsList}</Box>
       </Card>
     </>
   );

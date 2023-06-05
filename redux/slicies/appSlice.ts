@@ -1,5 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { getMoviesBySearch } from "@/redux/slicies/movieSlice";
+import {
+  getMoviesBySearch,
+  toggleIsFavorite,
+} from "@/redux/slicies/movieSlice";
 
 // types
 export type RequestStatusType = "idle" | "loading" | "succeeded" | "failed";
@@ -37,6 +40,9 @@ export const appSlice = createSlice({
       .addCase(getMoviesBySearch.rejected, (state) => {
         state.error = "Nothing was found for this search.";
         state.status = "failed";
+      })
+      .addCase(toggleIsFavorite.fulfilled, (state) => {
+        state.success = "The list of favorite movies changed.";
       })
       .addMatcher(
         (action) => action.type.endsWith("/pending"),

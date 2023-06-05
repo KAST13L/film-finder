@@ -1,5 +1,5 @@
 import axios from "axios";
-import { MovieType } from "@/components/films/Movies";
+import { MovieType } from "@/feauters/movies/Movies";
 
 export const instance = axios.create({
   baseURL: "https://api.tvmaze.com/",

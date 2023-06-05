@@ -1,4 +1,4 @@
-import MovieCard from "@/components/films/movie-card/MovieCard";
+import MovieCard from "@/feauters/movie-card/MovieCard";
 import styles from "./Movies.module.scss";
 import { useAppSelector } from "@/common/hooks/hooks";
 

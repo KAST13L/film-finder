@@ -1,5 +1,5 @@
 import "./globals.css";
-import { Header } from "@/components/header/Header";
+import { Header } from "@/feauters/header/Header";
 import { Providers } from "@/redux/provider";
 import { ErrorSnackbar } from "@/components/error-snackbar/ErrorSnackbar";
 
