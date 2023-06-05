@@ -16,7 +16,7 @@ export const Header = () => {
         color="primary"
         enableColorOnDark
       >
-        <Link href={"/"}>Film finder</Link>
+        <Link href={"/"}>Movie finder</Link>
       </AppBar>
       <div className={styles.progress}>
         {status === "loading" && <LinearProgress />}

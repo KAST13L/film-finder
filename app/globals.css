@@ -33,6 +33,9 @@ a {
   color: inherit;
   text-decoration: none;
 }
+a:hover{
+  color: #33ea01;
+}
 .container{
   text-align: center;
   max-width: 1200px;
