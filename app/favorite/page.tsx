@@ -5,6 +5,7 @@ import MovieCard from "@/feauters/movie-card/MovieCard";
 import { useActions } from "@/common/hooks/useActions";
 import { movieThunks } from "@/redux/slicies/movieSlice";
 import { useEffect } from "react";
+import { redirect } from "next/navigation";
 
 export default function FavoriteMovies() {
   const favoriteMovies = useAppSelector((state) => state.movie.favoriteMovies);
@@ -14,6 +15,11 @@ export default function FavoriteMovies() {
   useEffect(() => {
     loadFavoriteMovies();
   }, [movie]);
+
+  if (!favoriteMovies.length) {
+    redirect("/");
+  }
+
   return (
     <>
       <div className={styles.movies}>
