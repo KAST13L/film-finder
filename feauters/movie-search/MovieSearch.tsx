@@ -8,11 +8,11 @@ import { Button, TextField } from "@mui/material";
 export const MovieSearch = () => {
   const [search, setSearch] = useState<string>("");
 
-  const { loadFilmsBySearch } = useActions(movieThunks);
+  const { getMoviesBySearch } = useActions(movieThunks);
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    loadFilmsBySearch(search);
+    getMoviesBySearch(search);
   };
 
   return (
@@ -25,7 +25,7 @@ export const MovieSearch = () => {
         className={styles.input}
         onChange={(e) => setSearch(e.target.value)}
       />
-      <Button onClick={() => loadFilmsBySearch(search)} variant={"contained"}>
+      <Button onClick={() => getMoviesBySearch(search)} variant={"contained"}>
         search
       </Button>
     </form>

@@ -29,19 +29,19 @@ export type MovieType = {
 };
 
 export const Movies = () => {
-  const films = useAppSelector((state) => state.movie.movies);
+  const movies = useAppSelector((state) => state.movie.movies);
   const isSearched = useAppSelector((state) => state.movie.isSearched);
 
   return (
     <>
-      <div className={styles.films}>
-        {films.map((f) => (
-          <MovieCard key={f.show.id} movie={f} />
+      <div className={styles.movies}>
+        {movies.map((movie) => (
+          <MovieCard key={movie.show.id} movie={movie} />
         ))}
       </div>
       <div className={styles.message}>
         {isSearched
-          ? films.length
+          ? movies.length
             ? ""
             : "Movies list is empty... Nothing was found for this search."
           : "Let's get started. Type the show's name!"}

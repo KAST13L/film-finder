@@ -77,13 +77,21 @@ export const movieSlice = createSlice({
         if (state.movies[index]) {
           state.movies[index].isFavorite = !state.movies[index].isFavorite;
         }
+        const favoriteIndex = state.favoriteMovies.findIndex(
+          (m) => m.show.id === action.payload?.id
+        );
+        if (state.favoriteMovies[favoriteIndex]) {
+          state.favoriteMovies[favoriteIndex].isFavorite =
+            !state.favoriteMovies[favoriteIndex].isFavorite;
+        }
         state.selectedMovie.isFavorite = !state.selectedMovie.isFavorite;
       });
   },
 });
 
 export const movieThunks = {
-  loadFilmsBySearch: getMoviesBySearch,
   toggleIsFavorite,
+  loadFavoriteMovies,
+  getMoviesBySearch,
 };
 export const movieActions = movieSlice.actions;
