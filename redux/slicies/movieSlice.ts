@@ -36,7 +36,7 @@ export const toggleIsFavorite = createAsyncThunk(
   "movies/toggleIsFavorite",
   (movie: MovieType, {}) => {
     toggleIsFavoriteMovieLocalStorage(movie);
-    return { id: movie.show.id };
+    return { movie };
   }
 );
 
@@ -72,18 +72,21 @@ export const movieSlice = createSlice({
       })
       .addCase(toggleIsFavorite.fulfilled, (state, action) => {
         const index = state.movies.findIndex(
-          (m) => m.show.id === action.payload?.id
+          (m) => m.show.id === action.payload?.movie.show.id
         );
         if (state.movies[index]) {
           state.movies[index].isFavorite = !state.movies[index].isFavorite;
         }
         const favoriteIndex = state.favoriteMovies.findIndex(
-          (m) => m.show.id === action.payload?.id
+          (m) => m.show.id === action.payload?.movie.show.id
         );
         if (state.favoriteMovies[favoriteIndex]) {
           state.favoriteMovies[favoriteIndex].isFavorite =
             !state.favoriteMovies[favoriteIndex].isFavorite;
         }
+        state.favoriteMovies.filter(
+          (m) => m.show.id === action.payload.movie.show.id
+        );
         state.selectedMovie.isFavorite = !state.selectedMovie.isFavorite;
       });
   },

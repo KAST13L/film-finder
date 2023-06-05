@@ -8,10 +8,12 @@ import { useEffect } from "react";
 
 export default function FavoriteMovies() {
   const favoriteMovies = useAppSelector((state) => state.movie.favoriteMovies);
+  const movie = useAppSelector((state) => state.movie.movies);
+
   const { loadFavoriteMovies } = useActions(movieThunks);
   useEffect(() => {
     loadFavoriteMovies();
-  }, [favoriteMovies.length]);
+  }, [movie]);
   return (
     <>
       <div className={styles.movies}>
