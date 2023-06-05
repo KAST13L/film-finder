@@ -1,5 +1,5 @@
 "use client";
-import { useAppSelector } from "@/redux/hooks/hooks";
+import { useAppSelector } from "@/common/hooks/hooks";
 import { SelectedMovieCard } from "@/components/selected-movie/SelectedMovieCard";
 import { redirect } from "next/navigation";
 

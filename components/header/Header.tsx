@@ -2,7 +2,7 @@
 import { AppBar } from "@mui/material";
 import styles from "./Header.module.scss";
 import Link from "next/link";
-import { useAppSelector } from "@/redux/hooks/hooks";
+import { useAppSelector } from "@/common/hooks/hooks";
 import LinearProgress from "@mui/material/LinearProgress";
 
 export const Header = () => {

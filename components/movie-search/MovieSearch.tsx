@@ -2,7 +2,7 @@
 import styles from "./MovieSearch.module.scss";
 import { FormEventHandler, useState } from "react";
 import { movieThunks } from "@/redux/slicies/movieSlice";
-import { useActions } from "@/redux/hooks/useActions";
+import { useActions } from "@/common/hooks/useActions";
 import { Button, TextField } from "@mui/material";
 
 export const MovieSearch = () => {

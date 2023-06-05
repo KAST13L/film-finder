@@ -1,9 +1,9 @@
 "use client";
 import Snackbar from "@mui/material/Snackbar";
 import Alert, { AlertColor } from "@mui/material/Alert";
-import { useActions } from "@/redux/hooks/useActions";
+import { useActions } from "@/common/hooks/useActions";
 import { appActions } from "@/redux/slicies/appSlice";
-import { useAppSelector } from "@/redux/hooks/hooks";
+import { useAppSelector } from "@/common/hooks/hooks";
 
 export function ErrorSnackbar() {
   const error = useAppSelector((state) => state.app.error);

@@ -1,13 +1,19 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { MovieType } from "@/components/films/Movies";
-import { movieApi } from "@/redux/services/api";
+import { movieApi } from "@/common/services/api";
 
 export const getMoviesBySearch = createAsyncThunk(
   "movie-card/getMoviesBySearch",
   async (search: string, { rejectWithValue }) => {
     const res = await movieApi.getMoviesBySearch(search);
-    if (res.length) {
-      return res;
+
+    const transformedState = res.map((movie) => ({
+      ...movie,
+      isFavorite: false,
+    }));
+
+    if (transformedState.length) {
+      return transformedState;
     } else {
       return rejectWithValue({});
     }

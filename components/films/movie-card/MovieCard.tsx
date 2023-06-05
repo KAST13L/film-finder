@@ -4,7 +4,7 @@ import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
 import { MovieType } from "@/components/films/Movies";
 import { Button, Rating } from "@mui/material";
-import { useActions } from "@/redux/hooks/useActions";
+import { useActions } from "@/common/hooks/useActions";
 import { movieActions } from "@/redux/slicies/movieSlice";
 import Link from "next/link";
 import styles from "./MovieCard.module.scss";

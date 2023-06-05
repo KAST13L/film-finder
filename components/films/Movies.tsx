@@ -1,9 +1,10 @@
 import MovieCard from "@/components/films/movie-card/MovieCard";
 import styles from "./Movies.module.scss";
-import { useAppSelector } from "@/redux/hooks/hooks";
+import { useAppSelector } from "@/common/hooks/hooks";
 
 export type MovieType = {
   score: number;
+  isFavorite: boolean;
   show: {
     id: number;
     name: string;
